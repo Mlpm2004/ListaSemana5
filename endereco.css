@@ -1,0 +1,42 @@
+        .externo{
+            display: flex;
+            justify-content: center;
+        }
+        .container{
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+            align-items: center;
+            flex-wrap: wrap;
+        }        
+        .linha{
+            display: flex;
+            width: 600px;
+            flex-direction: row;
+            margin-left: 20px;
+            padding-bottom: 10px;
+             
+        }
+        .borda{
+            border:2px solid; 
+        }
+        .borda-red{
+            border-radius: 2rem 1rem;
+            padding: 30px;
+        }
+        .label{
+            width: 100px;
+        }
+        .input{
+            width: 400px;
+        }
+        input{
+            width: 400px;
+
+        }
+        .titulo{
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+
+        }

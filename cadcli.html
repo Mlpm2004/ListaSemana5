@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="endereco.css" />
+        <title>Cadastro de Cliente</title>
+    </head>
+    <script src="endereco.js"></script>
+    <script>
+        function insere_linha(ind,titulo){
+             html= ` <div class="label">
+                        <label> ${titulo} </label>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="${ind}" maxlength="200" >
+                    </div>
+                    `
+            document.getElementById('mutante').innerHTML=html
+        }
+
+    </script>
+     <body>
+        <form id="cadastro_end">
+        <div class="titulo"><H1> CADASTRO DE CLIENTE</H1></div>
+        
+        <div class="externo">
+            <div class ="borda borda-red container"> 
+                <div style="    width: 550px;   margin: 20px;">
+                    <label> Tipo de Cadastro  :  </label> 
+                    <input type="radio" id="opcao" name="opcao" style="width: 10px;" checked value="nome" onclick="insere_linha(this.value,'Cliente')"> Cliente
+                    <input type="radio" id="opcao" name="opcao" style="width: 10px;" value="loja" onclick="insere_linha(this.value,'Loja')"> Loja
+                    <input type="radio" id="opcao" name="opcao" style="width: 10px;" value="mercado" onclick="insere_linha(this.value,'Mercado')"> Mercado
+                </div>
+                <div class="linha" id="mutante">
+                    <script>insere_linha("nome",'Cliente')</script>
+                </div>
+                <div class="linha">
+                    <div class="label"><label> Logradouro </label></div>
+                    <div class="input"><input type="text" id="logradouro" maxlength="200" placeholder="Insira o Logradouro"></div>
+                </div>
+                <div class="linha">
+                    <div class="label"><label> Número </label></div>
+                    <div class="input"><input type="number" min="0" id="numero" maxlength="200" placeholder="Insira o Número"></div>
+                </div>
+                <div class="linha">
+                    <div class="label"><label> Cidade </label></div>
+                    <div class="input"><input type="text" id="cidade" maxlength="200" placeholder="Insira a Cidade"></div>
+                </div>
+                <div class="linha">
+                    <div class="label"><label> Estado </label></div>
+                    <div class="input"><input type="text" id="estado" maxlength="200" placeholder="Insira o Estado"></div>
+                </div>
+                <div class="linha">
+                    <div class="label"><label> País </label></div>
+                    <div class="input"><input type="text" id="pais" maxlength="200" placeholder="Insira o País"></div>
+                </div>
+                <div class="linha">
+                    <div class="label"><label> CEP </label></div>
+                    <div class="input"><input type="text" id="cep" maxlength="200" placeholder="Insira o CEP"></div>
+                </div>
+                <hr>
+                <div class="linha" style="justify-content: center;">
+                     <input type="button" id="btn1" value="CADASTRAR" onclick="cadEndereco()">
+                </div>
+             </div>
+        </div>
+    </form>
+    </body>
+</html>

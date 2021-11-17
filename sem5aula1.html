@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <h1>GERADOR DE MEMES</h1>
+        <input type="text" id="topo" placeholder="Frase do topo">
+        <input type="text" id="base" placeholder="Frase da base">
+        <input type="radio" name="meme" value="Afraid-To-Ask-Andy"> Meme 1
+        <input type="radio" name="meme" value="Ancient-Aliens"> Meme 2
+        <input type="button" id="btn1" value="GERAR">
+   </main>
+    <footer>
+
+    </footer>
+</body>
+<script>
+    const $button = document.getElementById("btn1")
+    $button.addEventListener("click",function(){
+        //recuperar valores
+        const txttopo = document.getElementById("topo").value
+        const txtbase = document.getElementById("base").value
+        const radioop = document.querySelector("input[name='meme']:checked").value
+        //montar url
+        const url1 = `http://apimeme.com/meme?meme=${radioop}&top=${txttopo}&bottom=${txtbase}` 
+        // exibir na tela      
+        const $footer = document.querySelector("footer")
+        const imgexibida=document.createElement("img")
+        imgexibida.src=url1
+        $footer.appendChild(imgexibida)
+
+    })
+</script>
+
+
