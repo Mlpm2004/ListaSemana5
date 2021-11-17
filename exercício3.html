@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de endereço dinâmico</title>
+
+</head>
+    <script>
+        let ind=1
+        let id=1
+        let html1=""
+        function addendereco(){
+            let dados=[]
+            for (i=2;i<=ind;i++){
+                let nome='#endereco'+i
+                let input=document.querySelector(nome)
+                dados[i-2] = input.value;
+            }
+            ind++
+            for (i=2;i<=ind;i++){
+                let valor = (dados[i-2] == undefined ? "" : dados[i-2]) // operador ternario
+                let html="<div class='row'><div class='column-3 column label'><label><b><i>Endereço"+i+"</i></b></label></div></div><div class='row'><div class='column-9 column input'><input type='text'  id='endereco"+i+"' value='"+valor+"'></div></div>"
+                html1+=html 
+            }
+            const element = document.getElementById('end');
+            element.innerHTML = html1 
+            html1=""
+        }
+        function salvar(){
+            let dados=[]
+            arrayelementosfixos = ["nome","sobrenome","email","telefone","endereco1"]
+            for (i=0;i<=arrayelementosfixos.length-1;i++){
+                let nome="#"+arrayelementosfixos[i]
+                let input=document.querySelector(nome)
+                dados[i]=input.value
+            }
+            dados.push(ind)
+            indvetor=arrayelementosfixos.length+1
+            for (i=2;i<=ind;i++){
+                let nome='#endereco'+i
+                let input=document.querySelector(nome)
+                dados[indvetor] = input.value;
+                indvetor++
+            }
+            let objeto = JSON.stringify(dados)
+            localStorage.setItem("obj", objeto)
+        }
+        function carregar(){
+            const objeto =localStorage.getItem("obj")
+            let dados = JSON.parse(objeto)
+            const arrayelementosfixos = ["nome","sobrenome","email","telefone","endereco1"]
+            for (i=0;i<=arrayelementosfixos.length-1;i++){
+                let nome="#"+arrayelementosfixos[i]
+                let input=document.querySelector(nome)
+                input.value=dados[i]
+            }
+            ind= dados[5]
+            for (i=2;i<=ind;i++){
+                let valor = (dados[i+4] == undefined ? "" : dados[i+4])
+                let html="<div class='row'><div class='column-3 column label'><label><b><i>Endereço"+i+"</i></b></label></div></div><div class='row'><div class='column-9 column input'><input type='text'  id='endereco"+i+"' value='"+valor+"'></div></div>"
+                html1+=html 
+            }
+            let element = document.getElementById('end');
+            element.innerHTML = html1 
+            html1=""
+
+        }
+        function limpar(){
+            localStorage.clear(); 
+            location.reload();
+
+        }
+    </script>
+    <style>
+        body {
+            position:relative;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container {
+            position: absolute;
+            top: 100px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .row {
+            clear: both;
+            width: 50%;  
+        }
+
+        .column-3 {    
+            width: 25%;    
+        }
+
+        .column-9 {    
+            width: 75%;    
+        }
+
+        .label {
+            padding-top: 7px;
+            text-align: left;    
+        }
+
+        .column {
+            float: left;
+            height: 41px;    
+        }
+
+        .input input {
+            width: 100%;
+            height: 34px;    
+            padding-left: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+    <body onload="carregar()">
+        <section align="center">
+            <div  class="espaco"><p align="justify">
+                Usando o exercício 6, adicione um botão sallet no formulário, ao clicar, 
+                ele deve sallet o formulário no localstorage e sempre que a página for 
+                carregada deverá recuperar o total de formulários salvos.
+            </div>
+        </section>
+        <section style="padding-top: 100px;">
+        <div id="container">
+            <div class="row">
+                <div class="column-3 column label">
+                    <label><b><i>Nome</i></b></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-9 column input">
+                    <input type="text" id="nome" name="nome">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-3 column label">
+                    <label><b><i>Sobrenome</i></b></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-9 column input">
+                   <input type="text" id="sobrenome">
+                </div>
+             </div>
+            <div class="row">
+               <div class="column-3 column label">
+                    <label><b><i>Email</i></b></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-9 column input">
+                    <input type="mail" id="email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-3 column label">
+                    <label><b><i>Telefone</i></b></label>
+                </div>
+             </div>
+            <div class="row">
+               <div class="column-9 column input">
+                    <input type="text" id="telefone">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column-3 column label">
+                    <label><b><i>Endereço1</i></b></label>
+                </div>
+             </div>
+            <div class="row">
+               <div class="column-9 column input">
+                    <input type="text" id="endereco1">
+                </div>
+            </div>
+            <div id="end">
+            </div>
+            <div class="row">
+                <div class="column-3 column label">
+                    <button id="btn" onclick="addendereco()">Add Endereço</button>
+                </div>
+                <div class="column-3 column label" style="padding-left: 50px;">
+                    <button id="btn" onclick="salvar()">Salvar</button>
+                </div>
+                <div class="column-3 column label" style="padding-left: 50px;">
+                    <button id="btn" onclick="limpar()">Limpar</button>
+                </div>
+            </div>
+        </div>
+        </section>
+    </body>
+</html>
