@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <script src="ex10_produtos.js"></script>
+</head>
+<style>
+       .externo{
+            display: flex;
+            justify-content: center;
+        }
+        .borda{
+            border:2px solid; 
+        }
+        .borda-red{
+            border-radius: 2rem 1rem;
+            padding: 30px;
+        }
+        .titulo{
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+
+        }
+        .textos{
+            flex-direction:column;
+            padding: 20px;
+            width:300px
+        }
+        img {
+        width:100px;
+        height: 120px"
+        }
+        .imagem{
+            flex-direction:column;
+            padding: 20px;
+        }
+</style>
+<body>
+        <div class="externo">
+            <div class ="borda borda-red container"> 
+                <div class="titulo">
+                    <label> Lista de Produtos  </label> 
+                </div>
+                 <div  id="mutante">
+                    <script>insere_linha()</script>
+                </div>
+                <div  >
+                     <input type="button" id="btn1" value="Submit" onclick="movimento()">
+                </div>
+           </div>
+        </div>
+    
+</body>
+</html>
